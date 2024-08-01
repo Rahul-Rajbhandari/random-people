@@ -1,3 +1,25 @@
+<?php
+$json = file_get_contents("./persons.json");
+$data = json_decode($json, true); //covert into associative array
+
+// foreach($data as $element){
+// echo "<pre>";
+// echo "<hr>";
+// echo($element["name"]["first"]);
+// echo "<br>";
+// echo($element["name"]["last"]);
+// echo "<br>";
+// echo ($element["gender"]);
+// echo "<hr>";
+// echo "</pre>";
+// }
+
+
+echo "<pre>";
+var_dump($data);
+echo "</pre>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,14 +35,50 @@
   </script>
 </head>
 
-<body class="bg-dark">
+<body class="bg-">
   <div class="container">
     <div class="mt-4 mb-5 d-flex justify-content-between align-items-center">
 
       <h1 class="text-white">Random People Here! </h1>
+      
 
     </div>
+    <table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Profile</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($data as $element): ?>
+      <tr> 
+      <td> <img src ="<?php echo $element["picture"]["medium"]; ?>">  </td>
+      <td><?=$element ["name"]["first"] ?></td>
+      <td> <?= $element["email"] ?></td>
+    </tr>
+    <?php endforeach; ?>
 
+
+
+    <!-- <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td >Larry the Bird</td>
+      <td>@twitter</td>
+    </tr> -->
+  </tbody>
+</table>
 
 
   </div>
